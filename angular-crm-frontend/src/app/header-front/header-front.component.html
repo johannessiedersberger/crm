@@ -1,0 +1,10 @@
+<div>
+    <p-megaMenu [model]="items" styleClass="flex">
+        <ng-template pTemplate="start">
+            <img src="../../assets/Logo.svg" height="50" class="mr-2 logo-pointer" [routerLink]="''" />
+        </ng-template>
+        <ng-template pTemplate="end">
+            <p-button label="Get Started" [routerLink]="'/signup'" ></p-button>
+        </ng-template>
+    </p-megaMenu>
+</div>
