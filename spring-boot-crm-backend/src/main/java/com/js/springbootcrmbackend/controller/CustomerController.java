@@ -15,15 +15,21 @@ import static org.springframework.http.ResponseEntity.status;
 @AllArgsConstructor
 public class CustomerController {
     private final CustomerService customerService;
-    @PostMapping("/customers")
-    public ResponseEntity<Void> createCustomer(@RequestBody CustomerDto customerRequest){
-        customerService.save(customerRequest);
-        return new ResponseEntity<>(HttpStatus.CREATED);
-    }
 
     @GetMapping("/customers")
     public ResponseEntity<List<CustomerDto>> getAllCustomers(){
         return status(HttpStatus.OK).body(customerService.getAllCustomers());
+    }
+
+    @GetMapping("customers/{id}")
+    public ResponseEntity<CustomerDto> getCustomerById(@PathVariable("id") Long customerId){
+        return status(HttpStatus.OK).body(customerService.getCustomerbyId(customerId));
+    }
+
+    @PostMapping("/customers")
+    public ResponseEntity<Void> createCustomer(@RequestBody CustomerDto customerRequest){
+        customerService.save(customerRequest);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PutMapping("/customers/{id}")

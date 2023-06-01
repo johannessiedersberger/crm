@@ -19,7 +19,7 @@ public class CustomerMapper extends BaseMapper<Customer, CustomerDto>{
     @Override
     public CustomerDto convertToDto(Customer entity, Object... args) {
         CustomerDto customerDto = new CustomerDto();
-        if(customerDto != null){
+        if(entity != null){
             BeanUtils.copyProperties(entity, customerDto);
         }
         return customerDto;

@@ -30,6 +30,11 @@ public class CustomerService {
         return customerMapper.convertToDtoList(customers);
     }
 
+    public CustomerDto getCustomerbyId(Long customerId){
+        Customer customer = customerRepository.findById(customerId).orElseThrow(EntityNotFoundException::new);
+        return customerMapper.convertToDto(customer);
+    }
+
     public void updateCustomer(Long customerId, CustomerDto customerDto){
         Customer customer = customerRepository.findById(customerId).orElseThrow(EntityNotFoundException::new);
 
