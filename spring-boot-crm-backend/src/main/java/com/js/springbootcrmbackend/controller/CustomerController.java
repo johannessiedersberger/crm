@@ -13,32 +13,33 @@ import static org.springframework.http.ResponseEntity.status;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping("/api/customers")
 public class CustomerController {
     private final CustomerService customerService;
 
-    @GetMapping("/customers")
+    @GetMapping
     public ResponseEntity<List<CustomerDto>> getAllCustomers(){
         return status(HttpStatus.OK).body(customerService.getAllCustomers());
     }
 
-    @GetMapping("customers/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<CustomerDto> getCustomerById(@PathVariable("id") Long customerId){
         return status(HttpStatus.OK).body(customerService.getCustomerbyId(customerId));
     }
 
-    @PostMapping("/customers")
+    @PostMapping
     public ResponseEntity<Void> createCustomer(@RequestBody CustomerDto customerRequest){
         customerService.save(customerRequest);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping("/customers/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Void> updateCustomer(@PathVariable("id") Long customerId, @RequestBody CustomerDto customerRequest){
         customerService.updateCustomer(customerId, customerRequest);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping("/customers/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCustomer(@PathVariable("id") Long customerId){
         customerService.deleteCustomer(customerId);
         return new ResponseEntity<>(HttpStatus.OK);
