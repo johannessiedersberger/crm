@@ -13,6 +13,6 @@ public class GlobalExceptionHandler {
     protected ResponseEntity handleException(Exception e, Locale locale) {
         return ResponseEntity
                 .badRequest()
-                .body("Exception occur inside API " + e.getMessage());
+                .body("Exception occur inside API " + e);
     }
 }

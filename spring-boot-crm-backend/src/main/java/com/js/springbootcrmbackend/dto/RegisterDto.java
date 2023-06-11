@@ -14,8 +14,6 @@ public class RegisterDto {
     @Email
     @NotEmpty(message = "Email is required")
     private String email;
-    @NotBlank(message = "Username is required")
-    private String username;
     @NotBlank(message = "Password is required")
     private String password;
     @NotBlank(message = "Password2 is required")

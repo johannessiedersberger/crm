@@ -1,6 +1,9 @@
 package com.js.springbootcrmbackend.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,19 +11,15 @@ import lombok.Setter;
 
 import java.time.Instant;
 
-@Setter
 @Getter
+@Setter
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "crm_user")
-public class User {
+public class RefreshToken {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long userId;
-    private String email;
-    private String password;
-    private Instant created;
-    private boolean enabled;
-    private String uniqueString;
+    private Long id;
+    private String token;
+    private Instant createdDate;
 }
