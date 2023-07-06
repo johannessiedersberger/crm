@@ -19,7 +19,7 @@ public enum Role {
                     ADMIN_READ, ADMIN_UPDATE, ADMIN_DELETE, ADMIN_CREATE
             )
     ),
-    USER(
+    CRMUSER(
             Set.of(
                     USER_READ, USER_UPDATE, USER_DELETE, USER_CREATE
             )
