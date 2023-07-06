@@ -1,5 +1,7 @@
 package com.js.springbootcrmbackend.controller;
 
+import com.js.springbootcrmbackend.dto.AuthenticationRequest;
+import com.js.springbootcrmbackend.dto.AuthenticationResponse;
 import com.js.springbootcrmbackend.dto.RegisterRequest;
 import com.js.springbootcrmbackend.service.AuthService;
 import lombok.AllArgsConstructor;
@@ -23,6 +25,11 @@ public class AuthController {
     public ResponseEntity<String> verifyAccount(@PathVariable String token) {
         authService.verifyAccount(token);
         return new ResponseEntity<>("Account Activated Successfully", HttpStatus.OK);
+    }
+
+    @PostMapping("/authenticate")
+    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request){
+        return ResponseEntity.ok(authService.authenticate(request));
     }
 
 
