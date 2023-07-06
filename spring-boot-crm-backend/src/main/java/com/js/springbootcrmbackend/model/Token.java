@@ -1,12 +1,20 @@
 package com.js.springbootcrmbackend.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 import org.springframework.security.oauth2.core.OAuth2AccessToken;
 
+@Setter
+@Getter
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
 public class Token {
     @Id
     @GeneratedValue
-    private int tokenId;
+    private Long tokenId;
 
     @Column(unique = true)
     private String token;
