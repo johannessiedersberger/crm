@@ -14,14 +14,25 @@ import static com.js.springbootcrmbackend.model.Permission.*;
 
 @RequiredArgsConstructor
 public enum Role {
+    USER(Collections.emptySet()),
     ADMIN(
             Set.of(
-                    ADMIN_READ, ADMIN_UPDATE, ADMIN_DELETE, ADMIN_CREATE
+                    ADMIN_READ,
+                    ADMIN_UPDATE,
+                    ADMIN_DELETE,
+                    ADMIN_CREATE,
+                    MANAGER_READ,
+                    MANAGER_UPDATE,
+                    MANAGER_DELETE,
+                    MANAGER_CREATE
             )
     ),
-    CRMUSER(
+    MANAGER(
             Set.of(
-                    USER_READ, USER_UPDATE, USER_DELETE, USER_CREATE
+                    MANAGER_READ,
+                    MANAGER_UPDATE,
+                    MANAGER_DELETE,
+                    MANAGER_CREATE
             )
     )
     ;

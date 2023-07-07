@@ -36,7 +36,7 @@ import java.util.List;
 
 import static com.js.springbootcrmbackend.model.Permission.*;
 import static com.js.springbootcrmbackend.model.Role.ADMIN;
-import static com.js.springbootcrmbackend.model.Role.CRMUSER;
+import static com.js.springbootcrmbackend.model.Role.MANAGER;
 
 @Configuration
 @EnableWebSecurity
@@ -68,11 +68,11 @@ public class SecurityConfig {
                         "/swagger-ui.html"
                 )
                 .permitAll()
-                .requestMatchers("/api/customers/**").hasAnyRole(ADMIN.name(), CRMUSER.name())
-                .requestMatchers(HttpMethod.GET, "/api/customers/**").hasAuthority(ADMIN_READ.name())
-                .requestMatchers(HttpMethod.POST, "/api/customers/**").hasAuthority(ADMIN_CREATE.name())
-                .requestMatchers(HttpMethod.PUT, "/api/customers/**").hasAuthority(ADMIN_UPDATE.name())
-                .requestMatchers(HttpMethod.DELETE, "/api/customers/**").hasAuthority(ADMIN_DELETE.name())
+                .requestMatchers("/api/customers/**").hasAnyRole(ADMIN.name(), MANAGER.name())
+                .requestMatchers(HttpMethod.GET, "/api/customers/").hasAnyAuthority(ADMIN_READ.name(), MANAGER_READ.name())
+                .requestMatchers(HttpMethod.POST, "/api/customers/**").hasAnyAuthority(ADMIN_CREATE.name(), MANAGER_CREATE.name())
+                .requestMatchers(HttpMethod.PUT, "/api/customers/**").hasAnyAuthority(ADMIN_UPDATE.name(), MANAGER_UPDATE.name())
+                .requestMatchers(HttpMethod.DELETE, "/api/customers/**").hasAnyAuthority(ADMIN_DELETE.name(), MANAGER_DELETE.name())
                 .anyRequest()
                 .authenticated()
                 .and()
