@@ -1,5 +1,6 @@
 package com.js.springbootcrmbackend.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.js.springbootcrmbackend.dto.AuthenticationRequest;
 import com.js.springbootcrmbackend.dto.AuthenticationResponse;
 import com.js.springbootcrmbackend.dto.RegisterRequest;
@@ -7,12 +8,16 @@ import com.js.springbootcrmbackend.exception.CRMException;
 import com.js.springbootcrmbackend.model.*;
 import com.js.springbootcrmbackend.repository.TokenRepository;
 import com.js.springbootcrmbackend.repository.UserRepository;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.http.HttpHeaders;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.time.Instant;
 import java.util.UUID;
 
@@ -99,6 +104,33 @@ public class AuthService {
                 .revoked(false)
                 .build();
         tokenRepository.save(token);
+    }
+
+    public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
+
+        if(authHeader == null || !authHeader.startsWith("Bearer ")){
+            return;
+        }
+
+        final String refreshToken = authHeader.substring(7);
+        final String userEmail = jwtService.extractUsername(refreshToken);
+        if(userEmail != null){
+            var user = userRepository.findByEmail(userEmail).orElseThrow();
+            if(jwtService.isTokenValid(refreshToken, user)){
+                var accessToken = jwtService.generateToken(user);
+                revokeAllUserTokens(user);
+                saveUserToken(user, accessToken);
+                var authResponse = AuthenticationResponse.builder()
+                        .accessToken(accessToken)
+                        .refreshToken(refreshToken)
+                        .build();
+                new ObjectMapper().writeValue(response.getOutputStream(), authResponse);
+
+
+            }
+
+        }
     }
 
 
