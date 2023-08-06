@@ -31,7 +31,7 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
-
+    
 
     public void signUp(RegisterRequest registerRequest) {
         var oldUser = !userRepository.findByEmail(registerRequest.getEmail()).isEmpty();
@@ -126,12 +126,7 @@ public class AuthService {
                         .refreshToken(refreshToken)
                         .build();
                 new ObjectMapper().writeValue(response.getOutputStream(), authResponse);
-
-
             }
-
         }
     }
-
-
 }

@@ -15,12 +15,10 @@ import static org.springframework.http.ResponseEntity.status;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/customers")
-@PreAuthorize("hasRole('ADMIN')")
 public class CustomerController {
     private final CustomerService customerService;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('admin:read')")
     public ResponseEntity<List<CustomerDto>> getAllCustomers(){
         return status(HttpStatus.OK).body(customerService.getAllCustomers());
     }
