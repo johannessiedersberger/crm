@@ -21,6 +21,13 @@ import { SignupPageComponent } from './signup-page/signup-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { HeaderFrontComponent } from './header-front/header-front.component';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { authInterceptorProviders } from './_helper/auth.interceptor';
+import { ToastrModule } from 'ngx-toastr';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { HeaderDashboardComponent } from './header-dashboard/header-dashboard.component';
+
 
 @NgModule({
   declarations: [
@@ -29,7 +36,8 @@ import { DashboardPageComponent } from './dashboard-page/dashboard-page.componen
     SignupPageComponent,
     HomePageComponent,
     HeaderFrontComponent,
-    DashboardPageComponent
+    DashboardPageComponent,
+    HeaderDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -42,9 +50,11 @@ import { DashboardPageComponent } from './dashboard-page/dashboard-page.componen
     InputTextModule,
     FormsModule,
     PasswordModule,
-    MegaMenuModule
+    MegaMenuModule,
+    HttpClientModule,
+    ToastModule,
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
   schemas: [
 
