@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { MegaMenuItem } from 'primeng/api';
-import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-home-page',
@@ -8,20 +7,5 @@ import { Router } from '@angular/router';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent {
-  items: MegaMenuItem[];
 
-
-  constructor(private router: Router) {
-    this.items = [
-      {
-        label: 'Software',
-      },
-      {
-        label: 'Prices',
-      },
-      {
-        label: 'Resources',
-      }
-    ];
-  }
 }

@@ -27,7 +27,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { HeaderDashboardComponent } from './header-dashboard/header-dashboard.component';
-
+import { ChartModule } from 'primeng/chart';
 
 @NgModule({
   declarations: [
@@ -53,6 +53,8 @@ import { HeaderDashboardComponent } from './header-dashboard/header-dashboard.co
     MegaMenuModule,
     HttpClientModule,
     ToastModule,
+    ChartModule
+
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
