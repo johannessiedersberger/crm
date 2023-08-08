@@ -7,13 +7,14 @@
         <p-card header="Login" class="login-section">
             <div class="container">
                 <div class="row">
-                    <input class="margin-top" type="text" placeholder="email" pInputText [(ngModel)]="username" />
+                    <input class="margin-top" type="text" placeholder="email" pInputText [(ngModel)]="form.username" />
                 </div>
                 <div class="row">
-                    <input class="margin-top" type="password" placeholder="password" pInputText [(ngModel)]="password" />
+                    <input class="margin-top" type="password" placeholder="password" pInputText [(ngModel)]="form.password"  />
                 </div>
                 <div class="row">
-                    <p-button class="margin-top" label="Login" ></p-button>
+                    <p-toast></p-toast>
+                    <p-button class="margin-top" label="Login" (onClick)="login()"></p-button>
                 </div>
                 <div class="row margin-top">
                     <a href="/signup">Not Registred yet? Sign up</a>
