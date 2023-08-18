@@ -1,0 +1,34 @@
+<app-header-dashboard></app-header-dashboard>
+<section>
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-2">
+               
+            </div>
+            <div class="col-md-8">
+                <p-card>
+                    <p-table [value]="customers" [tableStyle]="{ 'min-width': '50rem' }">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>Firstname</th>
+                                <th>Lastname</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-customer>
+                            <tr>
+                                <td>{{ customer.firstName }}</td>
+                                <td>{{ customer.lastName }}</td>
+                                <td>{{ customer.email }}</td>
+                                <td>{{ customer.phoneNumber }}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                    
+                </p-card>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+</section>

@@ -28,6 +28,10 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { HeaderDashboardComponent } from './header-dashboard/header-dashboard.component';
 import { ChartModule } from 'primeng/chart';
+import { CustomerPageComponent } from './customer-page/customer-page.component';
+import { TableModule } from 'primeng/table';
+
+import { CommonModule } from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -37,7 +41,9 @@ import { ChartModule } from 'primeng/chart';
     HomePageComponent,
     HeaderFrontComponent,
     DashboardPageComponent,
-    HeaderDashboardComponent
+    HeaderDashboardComponent,
+    CustomerPageComponent
+
   ],
   imports: [
     BrowserModule,
@@ -53,8 +59,10 @@ import { ChartModule } from 'primeng/chart';
     MegaMenuModule,
     HttpClientModule,
     ToastModule,
-    ChartModule
-
+    ChartModule,
+    CardModule,
+    TableModule,
+    CommonModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
