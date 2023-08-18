@@ -17,6 +17,8 @@ export class HeaderDashboardComponent {
     this.items = [
       {
         label: 'Customers',
+        routerLink: '/customers',
+
       },
       {
         label: 'Deals',
