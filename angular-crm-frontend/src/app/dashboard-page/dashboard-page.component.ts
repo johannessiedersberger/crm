@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard-page.component.css']
 })
 export class DashboardPageComponent implements OnInit {
+  data: any;
+  options: any;
+
 
   basicData: any;
 
@@ -60,6 +63,32 @@ export class DashboardPageComponent implements OnInit {
         }
       }
     };
+
+    this.data = {
+      labels: ['A', 'B', 'C'],
+      datasets: [
+        {
+          data: [540, 325, 702],
+
+        }
+      ]
+    }
+
+    this.options = {
+      radius: 70,
+
+
+      plugins: {
+        legend: {
+          labels: {
+            usePointStyle: true,
+            color: textColor
+          }
+        }
+      }
+    }
   }
+
+
 
 }
