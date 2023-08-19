@@ -1,19 +1,61 @@
 <app-header-dashboard></app-header-dashboard>
 <section>
+    <p-dialog header="Edit Customer" [(visible)]="visible" [style]="{width: '50vw'}" [draggable]="false">
+        <div class="row text-center"><input type="text" pInputText [(ngModel)]="selectedCustomer.firstName" placeholder="Firstname" /></div>
+        <div class="row text-center"><input type="text" pInputText [(ngModel)]="selectedCustomer.lastName" placeholder="Lastname" /></div>
+        <div class="row text-center"><input type="text" pInputText [(ngModel)]="selectedCustomer.email" placeholder="Email" /></div>
+        <div class="row text-center"><input type="text" pInputText [(ngModel)]="selectedCustomer.phoneNumber" placeholder="Phone" /></div>
+        <div class="row text-center">
+            <div class="col">
+                <p-button (click)="confirm()" icon="pi pi-check" label="Confirm"></p-button>
+            </div>
+            <div class="col">
+                <p-button (click)="cancel()" icon="pi pi-ban" label="Cancel" class="p-button-danger"></p-button>
+            </div>
+        </div>
+    </p-dialog>
+    <p-dialog header="Create Customer" [(visible)]="createCustomerVisible" [style]="{width: '50vw'}" [draggable]="false">
+        <div class="row text-center"><input type="text" pInputText [(ngModel)]="newCustomer.firstName" placeholder="Firstname" /></div>
+        <div class="row text-center"><input type="text" pInputText [(ngModel)]="newCustomer.lastName" placeholder="Lastname" /></div>
+        <div class="row text-center"><input type="text" pInputText [(ngModel)]="newCustomer.email" placeholder="Email" /></div>
+        <div class="row text-center"><input type="text" pInputText [(ngModel)]="newCustomer.phoneNumber" placeholder="Phone" /></div>
+        <div class="row text-center">
+            <div class="col">
+                <p-button (click)="confirmCreateCustomer()" icon="pi pi-check" label="Confirm"></p-button>
+            </div>
+            <div class="col">
+                <p-button (click)="cancelCreateCustomer()" icon="pi pi-ban" label="Cancel" class="p-button-danger"></p-button>
+            </div>
+        </div>
+    </p-dialog>
     <div class="container">
         <div class="row text-center">
-            <div class="col-md-2">
+            <div class="col-md-1">
                
             </div>
-            <div class="col-md-8">
+            <div class="col-md-10">
+               <h5 class="text-left">Customers</h5>
+               <p-button class="float-end text-right" label="Create Customer" (onClick)="showDialogCreateCustomer()"></p-button>
+            </div>
+
+            <div class="col-md-1">
+               
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-1">
+               
+            </div>
+            <div class="col-md-10">
                 <p-card>
-                    <p-table [value]="customers" [tableStyle]="{ 'min-width': '50rem' }">
+                    <p-table [loading]="loading" [value]="customers" [tableStyle]="{ 'min-width': '10rem' }">
                         <ng-template pTemplate="header">
                             <tr>
                                 <th>Firstname</th>
                                 <th>Lastname</th>
                                 <th>Email</th>
                                 <th>Phone</th>
+                                <th></th>
                             </tr>
                         </ng-template>
                         <ng-template pTemplate="body" let-customer>
@@ -22,13 +64,17 @@
                                 <td>{{ customer.lastName }}</td>
                                 <td>{{ customer.email }}</td>
                                 <td>{{ customer.phoneNumber }}</td>
+                                <td>
+                                    <span role="button" class="pi pi-file-edit mr-3" (click)="showDialog(customer)"></span>
+                                    <span role="button" class="pi pi-trash" (click)="deleteCustomer(customer.customerId)"></span>
+                                </td>
                             </tr>
                         </ng-template>
                     </p-table>
                     
                 </p-card>
             </div>
-            <div class="col-md-2"></div>
+            <div class="col-md-1"></div>
         </div>
     </div>
 </section>

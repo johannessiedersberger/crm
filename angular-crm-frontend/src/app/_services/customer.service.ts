@@ -20,5 +20,17 @@ export class CustomerService {
     return this.http.get<Array<Customer>>(CUSTOMER_API, httpOptions);
   }
 
+  updateCustomer(customer: Customer) {
+    return this.http.put(CUSTOMER_API + '/' + customer.customerId, customer, httpOptions);
+  }
+
+  deleteCustomer(customerId: number) {
+    return this.http.delete(CUSTOMER_API + '/' + customerId, httpOptions);
+  }
+
+  createCustomer(newCustomer: Customer) {
+    return this.http.post(CUSTOMER_API, newCustomer, httpOptions);
+  }
+
 
 }

@@ -10,6 +10,8 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DataViewModule, DataViewLayoutOptions } from 'primeng/dataview';
 
+import { DialogModule } from 'primeng/dialog';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputTextModule } from 'primeng/inputtext';
 
@@ -62,7 +64,8 @@ import { CommonModule } from "@angular/common";
     ChartModule,
     CardModule,
     TableModule,
-    CommonModule
+    CommonModule,
+    DialogModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
