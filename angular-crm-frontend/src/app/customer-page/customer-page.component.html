@@ -1,10 +1,10 @@
 <app-header-dashboard></app-header-dashboard>
 <section>
     <p-dialog header="Edit Customer" [(visible)]="visible" [style]="{width: '50vw'}" [draggable]="false">
-        <div class="row text-center"><input type="text" pInputText [(ngModel)]="selectedCustomer.firstName" placeholder="Firstname" /></div>
-        <div class="row text-center"><input type="text" pInputText [(ngModel)]="selectedCustomer.lastName" placeholder="Lastname" /></div>
-        <div class="row text-center"><input type="text" pInputText [(ngModel)]="selectedCustomer.email" placeholder="Email" /></div>
-        <div class="row text-center"><input type="text" pInputText [(ngModel)]="selectedCustomer.phoneNumber" placeholder="Phone" /></div>
+        <div class="row text-center m-1"><input type="text" pInputText [(ngModel)]="selectedCustomer.firstName" placeholder="Firstname" /></div>
+        <div class="row text-center m-1"><input type="text" pInputText [(ngModel)]="selectedCustomer.lastName" placeholder="Lastname" /></div>
+        <div class="row text-center m-1"><input type="text" pInputText [(ngModel)]="selectedCustomer.email" placeholder="Email" /></div>
+        <div class="row text-center m-1"><input type="text" pInputText [(ngModel)]="selectedCustomer.phoneNumber" placeholder="Phone" /></div>
         <div class="row text-center">
             <div class="col">
                 <p-button (click)="confirm()" icon="pi pi-check" label="Confirm"></p-button>
@@ -15,10 +15,10 @@
         </div>
     </p-dialog>
     <p-dialog header="Create Customer" [(visible)]="createCustomerVisible" [style]="{width: '50vw'}" [draggable]="false">
-        <div class="row text-center"><input type="text" pInputText [(ngModel)]="newCustomer.firstName" placeholder="Firstname" /></div>
-        <div class="row text-center"><input type="text" pInputText [(ngModel)]="newCustomer.lastName" placeholder="Lastname" /></div>
-        <div class="row text-center"><input type="text" pInputText [(ngModel)]="newCustomer.email" placeholder="Email" /></div>
-        <div class="row text-center"><input type="text" pInputText [(ngModel)]="newCustomer.phoneNumber" placeholder="Phone" /></div>
+        <div class="row text-center m-1"><input type="text" pInputText [(ngModel)]="newCustomer.firstName" placeholder="Firstname" /></div>
+        <div class="row text-center m-1"><input type="text" pInputText [(ngModel)]="newCustomer.lastName" placeholder="Lastname" /></div>
+        <div class="row text-center m-1"><input type="text" pInputText [(ngModel)]="newCustomer.email" placeholder="Email" /></div>
+        <div class="row text-center m-1"><input type="text" pInputText [(ngModel)]="newCustomer.phoneNumber" placeholder="Phone" /></div>
         <div class="row text-center">
             <div class="col">
                 <p-button (click)="confirmCreateCustomer()" icon="pi pi-check" label="Confirm"></p-button>
