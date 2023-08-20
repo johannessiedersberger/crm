@@ -34,6 +34,9 @@ import { CustomerPageComponent } from './customer-page/customer-page.component';
 import { TableModule } from 'primeng/table';
 
 import { CommonModule } from "@angular/common";
+import { DealsPageComponent } from './deals-page/deals-page.component';
+
+import { DragDropModule } from 'primeng/dragdrop';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,8 @@ import { CommonModule } from "@angular/common";
     HeaderFrontComponent,
     DashboardPageComponent,
     HeaderDashboardComponent,
-    CustomerPageComponent
+    CustomerPageComponent,
+    DealsPageComponent
 
   ],
   imports: [
@@ -65,7 +69,8 @@ import { CommonModule } from "@angular/common";
     CardModule,
     TableModule,
     CommonModule,
-    DialogModule
+    DialogModule,
+    DragDropModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

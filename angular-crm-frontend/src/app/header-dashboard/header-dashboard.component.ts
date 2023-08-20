@@ -22,6 +22,7 @@ export class HeaderDashboardComponent {
       },
       {
         label: 'Deals',
+        routerLink: '/deals'
       }
     ];
   }

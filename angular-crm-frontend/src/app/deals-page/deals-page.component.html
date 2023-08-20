@@ -1,0 +1,41 @@
+<app-header-dashboard></app-header-dashboard>
+<div class="container">
+    <div class="row text-center">
+        <div class="col-md-3">
+            <p-card header="Appointment" pDroppable (onDrop)="drop(0)">
+                <ul class="list-none flex flex-column gap-2 p-0 m-0">
+                    <li *ngFor="let deal of deals[0]" class="p-2 border-round shadow-1" pDraggable (onDragStart)="dragStart(deal, 0)" (onDragEnd)="dragEnd()">
+                        {{deal.name}}
+                    </li>
+                </ul>
+            </p-card>
+        </div>
+        <div class="col-md-3">
+            <p-card header="Qualified"  pDroppable (onDrop)="drop(1)">
+                <ul class="list-none flex flex-column gap-2 p-0 m-0"  >
+                    <li *ngFor="let deal of deals[1]" pDraggable class="p-2 border-round shadow-1"  (onDragStart)="dragStart(deal, 1)" (onDragEnd)="dragEnd()">
+                        {{deal.name}}
+                    </li>
+                </ul>
+            </p-card>
+        </div>
+        <div class="col-md-3">
+            <p-card header="Closed" pDroppable (onDrop)="drop(2)">
+                <ul class="list-none flex flex-column gap-2 p-0 m-0">
+                    <li *ngFor="let deal of deals[2]" class="p-2 border-round shadow-1" pDraggable (onDragStart)="dragStart(deal, 2)" (onDragEnd)="dragEnd()">
+                        {{deal.name}}
+                    </li>
+                </ul>
+            </p-card>
+        </div>
+        <div class="col-md-3">
+            <p-card header="Lost" pDroppable (onDrop)="drop(3)">
+                <ul class="list-none flex flex-column gap-2 p-0 m-0">
+                    <li *ngFor="let deal of deals[3]" class="p-2 border-round shadow-1" pDraggable (onDragStart)="dragStart(deal, 3)" (onDragEnd)="dragEnd()">
+                        {{deal.name}}
+                    </li>
+                </ul>
+            </p-card>
+        </div>
+    </div>
+</div>
