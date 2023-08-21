@@ -1,4 +1,9 @@
+import { DealStages } from "./dealStages";
+
 export interface Deal {
-    id: number,
-    name: string
+    dealId: number,
+    customerId: number,
+    name: string,
+    amount: number,
+    dealStage: DealStages
 }

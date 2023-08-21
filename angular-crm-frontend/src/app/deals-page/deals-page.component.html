@@ -1,11 +1,50 @@
 <app-header-dashboard></app-header-dashboard>
 <div class="container">
+    <p-dialog header="Create Deal" [(visible)]="createDealVisible" [style]="{width: '50vw'}" [draggable]="false">
+        <div class="row text-center m-1"><input type="text" pInputText [(ngModel)]="newDeal.name" placeholder="Name" /></div>
+        <div class="row text-center p-1"><p-dropdown [style]="{'minWidth':'100%'}" [options]="customers" [(ngModel)]="selectedCustomer" optionLabel="firstName"></p-dropdown></div>
+        <div class="row text-center m-1"><input type="number" pInputText [(ngModel)]="newDeal.amount" placeholder="Amount" /></div>
+        <div class="row text-center">
+            <div class="col">
+                <p-button (click)="confirmCreateDeal()" icon="pi pi-check" label="Confirm"></p-button>
+            </div>
+            <div class="col">
+                <p-button (click)="cancelCreateDeal()" icon="pi pi-ban" label="Cancel" class="p-button-danger"></p-button>
+            </div>
+        </div>
+    </p-dialog>
+    <p-dialog header="Edit Deal" [(visible)]="editDealVisible" [style]="{width: '50vw'}" [draggable]="false">
+        <div class="row text-center m-1"><input type="text" pInputText [(ngModel)]="selectedDeal.name" placeholder="Name" /></div>
+        <div class="row text-center p-1"><p-dropdown [style]="{'minWidth':'100%'}" [options]="customers" [(ngModel)]="selectedCustomer" optionLabel="firstName"></p-dropdown></div>
+        <div class="row text-center m-1"><input type="number" pInputText [(ngModel)]="selectedDeal.amount" placeholder="Amount" /></div>
+        <div class="row text-center">
+            <div class="col">
+                <p-button (click)="confirmEditDeal()" icon="pi pi-check" label="Confirm"></p-button>
+            </div>
+            <div class="col">
+                <p-button (click)="deleteDeal()" icon="pi pi-trash" label="Delete" class="p-button-danger"></p-button>
+            </div>
+        </div>
+    </p-dialog>
+    <div class="row text-center">
+        <div class="col-md-1">
+           
+        </div>
+        <div class="col-md-10">
+           <h5 class="text-left">Deals</h5>
+           <p-button class="float-end" label="Create Deal" (onClick)="showDialogCreateDeal()"></p-button>
+        </div>
+
+        <div class="col-md-1">
+           
+        </div>
+    </div>
     <div class="row text-center">
         <div class="col-md-3">
             <p-card header="Appointment" pDroppable (onDrop)="drop(0)">
                 <ul class="list-none flex flex-column gap-2 p-0 m-0">
                     <li *ngFor="let deal of deals[0]" class="p-2 border-round shadow-1" pDraggable (onDragStart)="dragStart(deal, 0)" (onDragEnd)="dragEnd()">
-                        {{deal.name}}
+                        {{deal.name}}  <span role="button" class="pi pi-file-edit mr-3" (click)="showEditDialog(deal)"></span>
                     </li>
                 </ul>
             </p-card>
@@ -14,7 +53,7 @@
             <p-card header="Qualified"  pDroppable (onDrop)="drop(1)">
                 <ul class="list-none flex flex-column gap-2 p-0 m-0"  >
                     <li *ngFor="let deal of deals[1]" pDraggable class="p-2 border-round shadow-1"  (onDragStart)="dragStart(deal, 1)" (onDragEnd)="dragEnd()">
-                        {{deal.name}}
+                        {{deal.name}} <span role="button" class="pi pi-file-edit mr-3" (click)="showEditDialog(deal)"></span>
                     </li>
                 </ul>
             </p-card>
@@ -23,7 +62,7 @@
             <p-card header="Closed" pDroppable (onDrop)="drop(2)">
                 <ul class="list-none flex flex-column gap-2 p-0 m-0">
                     <li *ngFor="let deal of deals[2]" class="p-2 border-round shadow-1" pDraggable (onDragStart)="dragStart(deal, 2)" (onDragEnd)="dragEnd()">
-                        {{deal.name}}
+                        {{deal.name}} <span role="button" class="pi pi-file-edit mr-3" (click)="showEditDialog(deal)"></span>
                     </li>
                 </ul>
             </p-card>
@@ -32,7 +71,7 @@
             <p-card header="Lost" pDroppable (onDrop)="drop(3)">
                 <ul class="list-none flex flex-column gap-2 p-0 m-0">
                     <li *ngFor="let deal of deals[3]" class="p-2 border-round shadow-1" pDraggable (onDragStart)="dragStart(deal, 3)" (onDragEnd)="dragEnd()">
-                        {{deal.name}}
+                        {{deal.name}}  <span role="button" class="pi pi-file-edit mr-3" (click)="showEditDialog(deal)"></span>
                     </li>
                 </ul>
             </p-card>
