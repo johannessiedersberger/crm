@@ -33,6 +33,8 @@ import { ChartModule } from 'primeng/chart';
 import { CustomerPageComponent } from './customer-page/customer-page.component';
 import { TableModule } from 'primeng/table';
 
+import { AutoCompleteModule } from 'primeng/autocomplete';
+
 import { DropdownModule } from 'primeng/dropdown';
 
 import { CommonModule } from "@angular/common";
@@ -73,7 +75,8 @@ import { DragDropModule } from 'primeng/dragdrop';
     CommonModule,
     DialogModule,
     DragDropModule,
-    DropdownModule
+    DropdownModule,
+    AutoCompleteModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

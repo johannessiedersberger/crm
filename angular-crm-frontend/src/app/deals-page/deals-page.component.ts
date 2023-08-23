@@ -4,6 +4,7 @@ import { DealService } from '../_services/deal.service';
 import { DealStages } from './dealStages';
 import { Customer } from '../customer-page/customer';
 import { CustomerService } from '../_services/customer.service';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-deals-page',
@@ -30,6 +31,7 @@ export class DealsPageComponent implements OnInit {
 
   customers: Array<Customer> = [];
   selectedCustomer: any;
+  filteredCustomers: any;
 
   createDealVisible: boolean = false;
   editDealVisible: boolean = false;
@@ -42,6 +44,7 @@ export class DealsPageComponent implements OnInit {
     this.setCustomers();
   }
 
+  // load and set the customers
   setCustomers() {
     this.customerService.getAllCustomers().subscribe({
       next: data => {
@@ -50,6 +53,7 @@ export class DealsPageComponent implements OnInit {
     })
   }
 
+  // load and set the deals
   setDeals() {
     this.dealSevice.getAllDeals().subscribe({
       next: data => {
@@ -61,6 +65,7 @@ export class DealsPageComponent implements OnInit {
     });
   }
 
+  // Start dragging deal
   dragStart(deal: Deal, source: number) {
     this.draggedDeal = deal;
     this.draggedDealSource = source;
@@ -68,7 +73,10 @@ export class DealsPageComponent implements OnInit {
     console.log("Drag started Deal: " + deal.dealId + " Source:" + this.draggedDealSource);
   }
 
+
+  // Drop deal at destination
   drop(destination: number) {
+    if (destination == this.draggedDealSource) return;
     // Add deal to destination
     this.deals[destination] = [...(this.deals[destination] as Deal[]), this.draggedDeal];
     // Delete Deal from Source
@@ -81,6 +89,7 @@ export class DealsPageComponent implements OnInit {
 
   }
 
+  // update dealstage of deal
   updateDealStage(deal: Deal, destination: number) {
     let newDeal = deal;
     newDeal.dealStage = this.getDealStageFromNumber(destination);
@@ -94,11 +103,11 @@ export class DealsPageComponent implements OnInit {
     });
   }
 
+  // Get the Dealstage from a number
   getDealStageFromNumber(stage: number): DealStages {
     if (stage == 0) {
       return DealStages.APPOINTMENT;
-    }
-    else if (stage == 1) {
+    } else if (stage == 1) {
       return DealStages.QUALIFIEDTOBUY;
     } else if (stage == 2) {
       return DealStages.CLOSED;
@@ -106,6 +115,7 @@ export class DealsPageComponent implements OnInit {
       return DealStages.CLOSEDANDLOST;
   }
 
+  // End the drag of the deal
   dragEnd() {
     this.draggedDeal = null;
     this.draggedDealSource = null;
@@ -132,6 +142,7 @@ export class DealsPageComponent implements OnInit {
   }
 
   confirmEditDeal() {
+    this.selectedDeal.customerId = this.selectedCustomer.customerId;
     this.dealSevice.updateDeal(this.selectedDeal).subscribe({
       next: data => {
         console.log("success");
@@ -145,9 +156,15 @@ export class DealsPageComponent implements OnInit {
     this.editDealVisible = false;
   }
 
-  showEditDialog(deal: Deal) {
-    this.editDealVisible = true;
+  async showEditDialog(deal: Deal) {
     this.selectedDeal = Object.assign({}, deal);
+    this.selectedCustomer = this.getCustomerFromId(this.selectedDeal.customerId);
+    this.editDealVisible = true;
+  }
+
+  getCustomerFromId(customerId: number): Customer {
+    const customer = this.customers.filter((customer: Customer) => customer.customerId == customerId);
+    return customer[0];
   }
 
   deleteDeal() {
@@ -158,5 +175,19 @@ export class DealsPageComponent implements OnInit {
       }
     });
     this.editDealVisible = false;
+  }
+
+  filteredCustomer(event: any) {
+    //in a real application, make a request to a remote url with the query and return filtered results, for demo we filter at client side
+    let filtered: any[] = [];
+    let query = event.query;
+    for (let i = 0; i < this.customers.length; i++) {
+      let customer = this.customers[i];
+      if (customer.lastName.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+        filtered.push(customer);
+      }
+    }
+
+    this.filteredCustomers = filtered;
   }
 }

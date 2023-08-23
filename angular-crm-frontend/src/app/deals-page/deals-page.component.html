@@ -2,7 +2,16 @@
 <div class="container">
     <p-dialog header="Create Deal" [(visible)]="createDealVisible" [style]="{width: '50vw'}" [draggable]="false">
         <div class="row text-center m-1"><input type="text" pInputText [(ngModel)]="newDeal.name" placeholder="Name" /></div>
-        <div class="row text-center p-1"><p-dropdown [style]="{'minWidth':'100%'}" [options]="customers" [(ngModel)]="selectedCustomer" optionLabel="firstName"></p-dropdown></div>
+        <div class="row text-center p-1">
+            <!-- Select Customer -->
+            <p-autoComplete [(ngModel)]="selectedCustomer" [suggestions]="filteredCustomers"
+            (completeMethod)="filteredCustomer($event)" field="lastName" [dropdown]="true">
+            <ng-template let-customer pTemplate="item">
+                <div>{{customer.lastName}}</div>
+            </ng-template>
+            </p-autoComplete>
+
+        </div>
         <div class="row text-center m-1"><input type="number" pInputText [(ngModel)]="newDeal.amount" placeholder="Amount" /></div>
         <div class="row text-center">
             <div class="col">
@@ -15,7 +24,15 @@
     </p-dialog>
     <p-dialog header="Edit Deal" [(visible)]="editDealVisible" [style]="{width: '50vw'}" [draggable]="false">
         <div class="row text-center m-1"><input type="text" pInputText [(ngModel)]="selectedDeal.name" placeholder="Name" /></div>
-        <div class="row text-center p-1"><p-dropdown [style]="{'minWidth':'100%'}" [options]="customers" [(ngModel)]="selectedCustomer" optionLabel="firstName"></p-dropdown></div>
+        <div class="row text-center p-1">
+             <!-- Select Customer -->
+             <p-autoComplete [(ngModel)]="selectedCustomer" [suggestions]="filteredCustomers"
+             (completeMethod)="filteredCustomer($event)" field="lastName" [dropdown]="true">
+             <ng-template let-customer pTemplate="item">
+                 <div>{{customer.lastName}}</div>
+             </ng-template>
+             </p-autoComplete>
+        </div>
         <div class="row text-center m-1"><input type="number" pInputText [(ngModel)]="selectedDeal.amount" placeholder="Amount" /></div>
         <div class="row text-center">
             <div class="col">

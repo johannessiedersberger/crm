@@ -20,6 +20,10 @@ export class CustomerService {
     return this.http.get<Array<Customer>>(CUSTOMER_API, httpOptions);
   }
 
+  getCustomerById(id: number): Observable<Customer> {
+    return this.http.get<Customer>(CUSTOMER_API + '/' + id, httpOptions);
+  }
+
   updateCustomer(customer: Customer) {
     return this.http.put(CUSTOMER_API + '/' + customer.customerId, customer, httpOptions);
   }
