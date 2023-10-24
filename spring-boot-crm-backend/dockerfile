@@ -1,0 +1,20 @@
+# Use the official OpenJDK 17 base image
+FROM adoptopenjdk:17-jdk-hotspot
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the Gradle wrapper files
+COPY gradlew .
+COPY gradle gradle
+
+# Copy the project files
+COPY build.gradle .
+COPY settings.gradle .
+COPY src src
+
+# Build the application with Gradle
+RUN ./gradlew build
+
+# Set the entry point to run the application
+ENTRYPOINT ["java", "-jar", "build/libs/your-application-name.jar"]
