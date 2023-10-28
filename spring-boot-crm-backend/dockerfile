@@ -1,20 +1,10 @@
 # Use the official OpenJDK 17 base image
-FROM adoptopenjdk:17-jdk-hotspot
+FROM openjdk:17-jdk-slim
 
-# Set the working directory inside the container
-WORKDIR /app
+COPY build/libs/spring-boot-crm-backend-0.0.1-SNAPSHOT.jar spring-boot-crm-backend-0.0.1-SNAPSHOT.jar
 
-# Copy the Gradle wrapper files
-COPY gradlew .
-COPY gradle gradle
-
-# Copy the project files
-COPY build.gradle .
-COPY settings.gradle .
-COPY src src
-
-# Build the application with Gradle
-RUN ./gradlew build
+EXPOSE 8080
 
 # Set the entry point to run the application
-ENTRYPOINT ["java", "-jar", "build/libs/your-application-name.jar"]
+ENTRYPOINT ["java", "-jar", "spring-boot-crm-backend-0.0.1-SNAPSHOT.jar"]
+

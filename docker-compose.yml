@@ -1,3 +1,5 @@
+version: '3'
+
 services:
   postgres:
     container_name: postgres
@@ -10,9 +12,10 @@ services:
       - postgres:/data/postgres
     ports:
       - "5432:5432"
-    networks:
-      - postgres
     restart: unless-stopped
+    networks: 
+     - crm
+
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4
@@ -24,13 +27,41 @@ services:
       - pgadmin:/var/lib/pgadmin
     ports:
       - "5050:80"
-    networks:
+    links:
       - postgres
     restart: unless-stopped
+    networks: 
+      - crm
+
+
+  spring-boot-crm-backend:
+    build: ./spring-boot-crm-backend
+    container_name: spring-boot-crm-backend
+
+    ports:
+      - 8080:8080 # Forward the exposed port 8080 on the container to port 8080 on the host machine
+    links:
+      - postgres
+    environment:
+      - DB_SERVER=postgres
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    networks: 
+      - crm
+
+  angular-crm-frontend:
+    build: ./angular-crm-frontend
+    container_name: angular-crm-frontend
+    ports:
+      - 80:80
+    links:
+      - spring-boot-crm-backend
+    networks: 
+      - crm
+
 networks:
-  postgres:
-    driver: bridge
-  spring:
+  crm:
     driver: bridge
 
 volumes:
