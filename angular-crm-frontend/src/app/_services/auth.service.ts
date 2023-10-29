@@ -8,9 +8,13 @@ import { LoginResponse } from '../login-page/login-response.payload';
 
 const AUTH_API = 'http://localhost:8080/api/auth/';
 
-const httpOptions = {
+const httpOptionsRegister = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }), 
   responseType: 'text' as 'text'
+};
+
+const httpOptionsLogin = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }), 
 };
 
 @Injectable({
@@ -25,7 +29,7 @@ export class AuthService {
     return this.http.post(AUTH_API + 'authenticate', {
       email,
       password
-    }, httpOptions);
+    }, httpOptionsLogin);
   }
 
   register(email: string, password: string, password2: string): Observable<any> {
@@ -38,6 +42,6 @@ export class AuthService {
       email,
       password,
       password2
-    }, httpOptions);
+    }, httpOptionsRegister);
   }
 }
