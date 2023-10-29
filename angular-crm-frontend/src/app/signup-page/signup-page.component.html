@@ -21,7 +21,7 @@
                     <input class="margin-top" type="password" placeholder="repeat password" pInputText [(ngModel)]="password2" />
                 </div>
                 <div class="row">
-                    <p-button class="margin-top" label="Create Account" ></p-button>
+                    <p-button class="margin-top" label="Create Account" (onClick)="signup()"></p-button>
                 </div>
                 <div class="row margin-top">
                     <a href="/login">Already Registred? Login</a>
