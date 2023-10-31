@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DashboardService } from '../_services/dashboard.service';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -14,18 +15,27 @@ export class DashboardPageComponent implements OnInit {
 
   basicOptions: any;
 
-  ngOnInit() {
+  revenues: any;
+
+  constructor(private dashboardService: DashboardService) {}
+
+
+  async ngOnInit() {
     const documentStyle = getComputedStyle(document.documentElement);
     const textColor = documentStyle.getPropertyValue('--text-color');
     const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
     const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
+
+
+    await this.setDashboardData();
+
 
     this.basicData = {
       labels: ['Q1', 'Q2', 'Q3', 'Q4'],
       datasets: [
         {
           label: 'Sales',
-          data: [540, 325, 702, 620],
+          data: this.revenues,
           backgroundColor: ['rgba(255, 159, 64, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)'],
           borderColor: ['rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)'],
           borderWidth: 1
@@ -88,6 +98,19 @@ export class DashboardPageComponent implements OnInit {
       }
     }
   }
+
+  async setDashboardData() {
+    this.revenues = [];
+
+    for(var i = 1; i<= 4; i++){
+        const data = await this.dashboardService.getRevenueByQuarter(2023, i);
+          this.revenues.push(data);
+        }
+      
+    }
+
+    
+  
 
 
 
