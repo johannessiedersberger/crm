@@ -1,6 +1,5 @@
 package com.js.springbootcrmbackend.config;
 
-import com.js.springbootcrmbackend.exception.CRMException;
 import com.js.springbootcrmbackend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

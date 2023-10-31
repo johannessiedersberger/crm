@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.js.springbootcrmbackend.dto.AuthenticationRequest;
 import com.js.springbootcrmbackend.dto.AuthenticationResponse;
 import com.js.springbootcrmbackend.dto.RegisterRequest;
-import com.js.springbootcrmbackend.exception.CRMException;
+import com.js.springbootcrmbackend.exception.CrmException;
 import com.js.springbootcrmbackend.model.*;
 import com.js.springbootcrmbackend.repository.TokenRepository;
 import com.js.springbootcrmbackend.repository.UserRepository;
@@ -36,7 +36,7 @@ public class AuthService {
     public void signUp(RegisterRequest registerRequest) {
         var oldUser = !userRepository.findByEmail(registerRequest.getEmail()).isEmpty();
         if(oldUser) {
-            throw new CRMException("User already exists");
+            throw new CrmException("User already exists");
         }
 
         User user = User.builder()
@@ -64,7 +64,7 @@ public class AuthService {
     }
 
     public void verifyAccount(String token) {
-        User user = userRepository.findByUniqueString(token).orElseThrow(() -> new CRMException("User not Found"));
+        User user = userRepository.findByUniqueString(token).orElseThrow(() -> new CrmException("User not Found"));
         user.setEnabled(true);
         userRepository.save(user);
     }

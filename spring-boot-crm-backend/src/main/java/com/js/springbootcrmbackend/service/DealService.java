@@ -3,6 +3,7 @@ package com.js.springbootcrmbackend.service;
 import com.js.springbootcrmbackend.dto.DealDto;
 import com.js.springbootcrmbackend.model.Customer;
 import com.js.springbootcrmbackend.model.Deal;
+import com.js.springbootcrmbackend.model.DealStage;
 import com.js.springbootcrmbackend.repository.CustomerRepository;
 import com.js.springbootcrmbackend.repository.DealRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -13,6 +14,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,12 +43,17 @@ public class DealService {
         Customer newCustomer = customerRepository.findById(dealDto.getCustomerId()).orElseThrow(EntityNotFoundException::new);
         var deal = modelMapper.map(dealDto, Deal.class);
         deal.setCustomer(newCustomer);
+        deal.setCreatedDate(new Date());
         dealRepository.save(deal);
     }
 
     public void updateDeal(Long dealId, DealDto dealDto){
         Deal deal = dealRepository.findById(dealId).orElseThrow(EntityNotFoundException::new);
         Customer newCustomer = customerRepository.findById(dealDto.getCustomerId()).orElseThrow(EntityNotFoundException::new);
+
+        if(deal.getClosedDate() == null && dealDto.getDealStage().equals(DealStage.CLOSED)){
+            deal.setClosedDate(new Date());
+        }
 
         deal.setDealStage(dealDto.getDealStage());
         deal.setCustomer(newCustomer);

@@ -1,6 +1,6 @@
 package com.js.springbootcrmbackend.service;
 
-import com.js.springbootcrmbackend.exception.CRMException;
+import com.js.springbootcrmbackend.exception.CrmException;
 import com.js.springbootcrmbackend.model.NotificationEmail;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,7 +37,7 @@ public class MailService {
             log.info("Activation email sent!!");
         }catch (MailException e){
             log.error("Exception occurred when sending mail", e);
-            throw new CRMException("Exception occurred when sending mail to " + notificationEmail.getRecipient(), e);
+            throw new CrmException("Exception occurred when sending mail to " + notificationEmail.getRecipient(), e);
         }
     }
 }

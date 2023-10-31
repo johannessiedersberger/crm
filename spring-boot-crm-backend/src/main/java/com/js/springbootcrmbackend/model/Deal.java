@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -25,6 +27,12 @@ public class Deal {
 
     @Enumerated(EnumType.STRING)
     private DealStage dealStage;
+
+    @Temporal(TemporalType.DATE)
+    private Date createdDate;
+
+    @Temporal(TemporalType.DATE)
+    private Date closedDate;
 
 
 }
