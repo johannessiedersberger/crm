@@ -34,7 +34,7 @@ export class SignupPageComponent {
       },
       error: err => {
         console.log(err);
-        this.showError("Error Signup " + err);
+        this.showError(err.error);
       }
     });
   }

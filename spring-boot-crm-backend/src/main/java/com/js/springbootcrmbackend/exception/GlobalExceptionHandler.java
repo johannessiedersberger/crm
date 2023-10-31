@@ -17,12 +17,12 @@ public class GlobalExceptionHandler {
 
 
     @ExceptionHandler({Exception.class})
-    protected ResponseEntity handleException(Exception e, Locale locale) {
-        logger.warn(e.getMessage());
+    protected ResponseEntity handleException(Exception ex, Locale locale) {
+        logger.error(ex.getMessage(), ex);
 
         return ResponseEntity
                 .badRequest()
-                .body("Exception occur inside API " + e + e.getMessage());
+                .body(ex.getMessage());
 
     }
 }
