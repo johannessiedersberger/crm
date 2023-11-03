@@ -7,6 +7,10 @@ pipeline {
         
     }
 
+    docker {
+            args '-p 3000:3000'
+        }
+
 
     environment {
         ANGULAR_APP_DIR = 'angular-crm-frontend'
