@@ -11,6 +11,7 @@ pipeline {
     environment {
         ANGULAR_APP_DIR = 'angular-crm-frontend'
         SPRING_BOOT_APP_DIR = 'spring-boot-crm-backend'
+        registry = 'johannessiedersberger/crm'
     }
 
 
@@ -35,6 +36,17 @@ pipeline {
                     }
                 }
             }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                dir("${ANGULAR_APP_DIR}") {
+                    script {
+                        sh 'docker build -t crm/frontend .'
+                    }
+                }
+            }
+            
         }
 
     }
