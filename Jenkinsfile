@@ -1,10 +1,7 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:18' 
-            args '-p 3000:3000' 
-        }
-    }
+    agent any
+
+    tools {nodejs "node"}
 
     environment {
         ANGULAR_APP_DIR = 'angular-crm-frontend'
