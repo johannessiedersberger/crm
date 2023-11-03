@@ -1,7 +1,12 @@
 pipeline {
     agent any
 
-    tools {nodejs "node"}
+    tools {
+        nodejs "node"
+        gradle "gradle"
+        
+    }
+
 
     environment {
         ANGULAR_APP_DIR = 'angular-crm-frontend'
@@ -21,7 +26,17 @@ pipeline {
             }
         }
 
-        
+        stage('Build Spring Boot App') {
+            steps {
+                dir("${SPRING_BOOT_APP_DIR}") {
+                    script {
+                         sh './gradlew clean build'
+                    }
+                }
+            }
+        }
 
     }
+
+    
 }
