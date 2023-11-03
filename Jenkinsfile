@@ -30,7 +30,8 @@ pipeline {
             steps {
                 dir("${SPRING_BOOT_APP_DIR}") {
                     script {
-                         sh './gradlew clean build'
+                        sh 'chmod +x gradlew'
+                        sh './gradlew clean build'
                     }
                 }
             }
