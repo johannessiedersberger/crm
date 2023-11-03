@@ -42,7 +42,7 @@ pipeline {
             steps {
                 dir("${ANGULAR_APP_DIR}") {
                     script {
-                        sh 'docker build -t crm/frontend .'
+                        docker.build("crm/frontend")
                     }
                 }
             }
