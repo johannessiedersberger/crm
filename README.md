@@ -22,6 +22,9 @@
 - Dashboard with Data-Visualization
 - Create and mange deals
 
+sudo docker-compose -f docker-compose.dev.yml up -d
+sudo docker ps
+
 
 
 
