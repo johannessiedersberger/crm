@@ -42,11 +42,9 @@ services:
       - 8080:8080 # Forward the exposed port 8080 on the container to port 8080 on the host machine
     links:
       - postgres
-    environment:
-      - DB_SERVER=postgres
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+    env_file:
+      - ./spring-boot-crm-backend/secrets.env
+    
     networks: 
       - crm
 

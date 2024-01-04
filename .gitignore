@@ -135,3 +135,5 @@ baseline.json
 # Husky
 .husky/_
 aio/content/examples/.DS_Store
+
+spring-boot-crm-backend/secrets.env
