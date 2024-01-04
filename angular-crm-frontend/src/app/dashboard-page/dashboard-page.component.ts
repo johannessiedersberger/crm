@@ -102,8 +102,10 @@ export class DashboardPageComponent implements OnInit {
   async setDashboardData() {
     this.revenues = [];
 
+    const currentYear = new Date().getFullYear();
+
     for(var i = 1; i<= 4; i++){
-        const data = await this.dashboardService.getRevenueByQuarter(2023, i);
+        const data = await this.dashboardService.getRevenueByQuarter(currentYear, i);
           this.revenues.push(data);
         }
       
