@@ -23,14 +23,17 @@
 - Create and mange deals
 
 ### Useful commands docker
+```
 docker compose up
 docker compose down
 docker compose -f docker-compose.dev.yml up -d
 docker ps
 docker build -t johannessiedersberger/springboot-crud-k8s:1.0 .
 docker push johannessiedersberger/springboot-crud-k8s:1.0
+```
 
 ### Useful commands kubectl
+```
 kubectl get services
 kubectl delete service postgresql
 kubectl delete service springboot-crud-svc
@@ -39,19 +42,9 @@ kubectl delete deployment springboot-crud-deployment
 kubectl delete deployment postgresql
 kubectl create -f kubernetes/
 kubectl delete -f kubernetes/
+kubectl get pods
+```
 
 ### Related Resources
-https://www.baeldung.com/spring-boot-minikube
-https://learnk8s.io/spring-boot-kubernetes-guide
-
-
-
-
-
-
-
-
-
-
- 
-
+- https://www.baeldung.com/spring-boot-minikube
+- https://learnk8s.io/spring-boot-kubernetes-guide
